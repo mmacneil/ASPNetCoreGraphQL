@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NHLStats.Api", "NHLStats.Ap
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NHLStats.Core", "NHLStats.Core\NHLStats.Core.csproj", "{E66B37D4-082D-42FC-A049-A1B183E18A2D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NHLStats.Data", "NHLStats.Data\NHLStats.Data.csproj", "{BFC5C5AF-26AA-4E41-85D5-37F23AE713A6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{E66B37D4-082D-42FC-A049-A1B183E18A2D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E66B37D4-082D-42FC-A049-A1B183E18A2D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E66B37D4-082D-42FC-A049-A1B183E18A2D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BFC5C5AF-26AA-4E41-85D5-37F23AE713A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BFC5C5AF-26AA-4E41-85D5-37F23AE713A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BFC5C5AF-26AA-4E41-85D5-37F23AE713A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BFC5C5AF-26AA-4E41-85D5-37F23AE713A6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
