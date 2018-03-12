@@ -7,7 +7,8 @@ using Microsoft.Extensions.DependencyInjection;
 using NHLStats.Api.Models;
 using NHLStats.Core.Data;
 using NHLStats.Data;
-using NHLStats.Data.InMemory;
+using NHLStats.Data.Repositories;
+
 
 namespace NHLStats.Api
 {
@@ -28,7 +29,7 @@ namespace NHLStats.Api
             services.AddTransient<PlayerQuery>();
             services.AddTransient<IPlayerRepository, PlayerRepository>();
             services.AddDbContext<NHLStatsContext>(options =>
-                options.UseSqlServer(Configuration["ConnectionStrings:StarWarsDatabaseConnection"])
+                options.UseSqlServer(Configuration["ConnectionStrings:NHLStatsDb"])
             );
         }
 

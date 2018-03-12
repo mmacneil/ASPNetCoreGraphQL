@@ -10,11 +10,11 @@ namespace NHLStats.Data
         {
             if (!db.Players.Any())
             {
-                var droid = new Player
+                var player = new Player
                 {
-                    Name = "R2-D2"
+                    Name = "Sidney Crosby"
                 };
-                db.Players.Add(droid);
+                db.Players.Add(player);
                 db.SaveChanges();
             }
         }
