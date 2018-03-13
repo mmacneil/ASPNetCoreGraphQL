@@ -13,5 +13,8 @@ namespace NHLStats.Data
         }
 
         public DbSet<Player> Players { get; set; }
+        public DbSet<Season> Seasons { get; set; }
+        public DbSet<Team> Teams { get; set; }
+        public DbSet<League> Leagues { get; set; }
     }
 }

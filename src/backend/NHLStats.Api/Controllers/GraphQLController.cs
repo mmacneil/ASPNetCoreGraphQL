@@ -7,7 +7,7 @@ using NHLStats.Api.Models;
 
 namespace NHLStats.Api.Controllers
 {
-    [Route("api/[controller]")] 
+    [Route("[controller]")] 
     public class GraphQLController : Controller
     {
         private readonly PlayerQuery _playerQuery;

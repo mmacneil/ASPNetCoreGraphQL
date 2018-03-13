@@ -8,8 +8,8 @@ namespace NHLStats.Api.Models
     {
         public PlayerType()
         {
-            Field(x => x.Id).Description("The Id of the Droid.");
-            Field(x => x.Name, nullable: true).Description("The name of the Droid.");
+            Field(x => x.Id).Description("The Id of the Player.");
+            Field(x => x.Name, nullable: true).Description("The name of the Player.");
         }
     }
 
