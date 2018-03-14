@@ -19,7 +19,7 @@ namespace NHLStats.Data.Repositories
 
         public async Task<List<SkaterStatistic>> Get(int playerId)
         {
-            return await _db.SkaterStatistics.Include(ss=>ss.Season).Where(ss => ss.PlayerId == playerId).ToListAsync();
+            return await _db.SkaterStatistics.Include(ss=>ss.Season).Include(ss=>ss.League).Include(ss=>ss.Team).Where(ss => ss.PlayerId == playerId).ToListAsync();
         }
     }
 }

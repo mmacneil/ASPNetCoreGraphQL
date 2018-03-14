@@ -7,6 +7,7 @@ namespace NHLStats.Core.Models
         public int Id { get; set; }
         public int SeasonId { get; set; }
         public int LeagueId { get; set; }
+        public int TeamId { get; set; }
         public int PlayerId { get; set; }
         public ushort GamesPlayed { get; set; }
         public ushort Goals { get; set; }
@@ -17,5 +18,6 @@ namespace NHLStats.Core.Models
 
         public virtual Season Season { get; set; }
         public virtual League League { get; set; }
+        public virtual Team Team { get; set; }
     }
 }
