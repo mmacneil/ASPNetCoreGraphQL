@@ -1,4 +1,6 @@
 ﻿ 
+ 
+using System;
 using System.Threading.Tasks;
 using GraphQL;
 using GraphQL.Types;
@@ -10,28 +12,32 @@ namespace NHLStats.Api.Controllers
     [Route("[controller]")] 
     public class GraphQLController : Controller
     {
-        private readonly PlayerQuery _playerQuery;
+        private readonly IDocumentExecuter _documentExecuter;
+        private readonly ISchema _schema;
 
-        public GraphQLController(PlayerQuery playerQuery)
+        public GraphQLController(ISchema schema, IDocumentExecuter documentExecuter)
         {
-            _playerQuery = playerQuery;
+            _schema = schema;
+            _documentExecuter = documentExecuter;
         }
 
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] GraphQLQuery query)
         {
-            var schema = new Schema { Query = _playerQuery };
-
-            var result = await new DocumentExecuter().ExecuteAsync(_ =>
+            if (query == null) { throw new ArgumentNullException(nameof(query)); }
+            var inputs = query.Variables.ToInputs();
+            var executionOptions = new ExecutionOptions
             {
-                _.Schema = schema;
-                _.Query = query.Query;
+                Schema = _schema,
+                Query = query.Query,
+                Inputs = inputs
+            };
 
-            }).ConfigureAwait(false);
+            var result = await _documentExecuter.ExecuteAsync(executionOptions).ConfigureAwait(false);
 
             if (result.Errors?.Count > 0)
             {
-                return BadRequest();
+                return BadRequest(result);
             }
 
             return Ok(result);

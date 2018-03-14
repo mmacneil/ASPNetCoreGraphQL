@@ -1,4 +1,6 @@
 ﻿
+using GraphQL;
+using GraphQL.Types;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -26,11 +28,15 @@ namespace NHLStats.Api
         {
             services.AddMvc();
 
-            services.AddTransient<PlayerQuery>();
+            services.AddDbContext<NHLStatsContext>(options => options.UseSqlServer(Configuration["ConnectionStrings:NHLStatsDb"]));
             services.AddTransient<IPlayerRepository, PlayerRepository>();
-            services.AddDbContext<NHLStatsContext>(options =>
-                options.UseSqlServer(Configuration["ConnectionStrings:NHLStatsDb"])
-            );
+            services.AddTransient<ISkaterStatisticRepository, SkaterStatisticRepository>();
+            services.AddScoped<IDocumentExecuter, DocumentExecuter>();
+            services.AddTransient<NHLStatsQuery>();
+            services.AddTransient<PlayerType>();
+            services.AddTransient<SkaterStatisticType>();
+            var sp = services.BuildServiceProvider();
+            services.AddSingleton<ISchema>(new NHLStatsSchema(new FuncDependencyResolver(type => sp.GetService(type))));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
