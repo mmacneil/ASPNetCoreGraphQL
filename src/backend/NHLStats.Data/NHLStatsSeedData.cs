@@ -43,7 +43,7 @@ namespace NHLStats.Data
                 {
                    new Player { Name = "Sidney Crosby",  BirthDate = new DateTime(1987,8,7), Height = "5'11",WeightLbs = 200, BirthPlace = "Cole Harbour, NS"},
                    new Player { Name = "Connor McDavid", BirthDate = new DateTime(1997,1,13), Height = "6'01",WeightLbs = 192, BirthPlace = "Richmond Hill, ONT"},
-                   new Player { Name = "Alex Ovechkin",  BirthDate = new DateTime(1985,1,13), Height = "6'03",WeightLbs = 235}
+                   new Player { Name = "Alex Ovechkin",  BirthDate = new DateTime(1985,1,13), Height = "6'03",WeightLbs = 235, BirthPlace = "Moscow, Russia"}
                 };
                 db.Players.AddRange(players);
                 db.SaveChanges();
@@ -90,7 +90,8 @@ namespace NHLStats.Data
                 {
                     new Team {Name = "Edmonton Oilers", Abbreviation = "EDM"},
                     new Team {Name = "Washington Capitals", Abbreviation = "WAS"},
-                    new Team {Name = "Pittsburgh Penguins", Abbreviation = "PIT"}
+                    new Team {Name = "Pittsburgh Penguins", Abbreviation = "PIT"},
+                    new Team {Name = "Moscow Dynamo", Abbreviation = "Dynamo"}
                 };
                 db.Teams.AddRange(teams);
                 db.SaveChanges();
@@ -110,6 +111,7 @@ namespace NHLStats.Data
             if (!db.SkaterStatistics.Any())
             {
                 var nhl = db.Leagues.Single(l => l.Abbreviation == "NHL");
+                var khl = db.Leagues.Single(l => l.Abbreviation == "KHL");
                 var regularSeason20052006 = db.Seasons.Single(s => s.Name == RegularSeason20052006);
                 var regularSeason20062007 = db.Seasons.Single(s => s.Name == RegularSeason20062007);
                 var regularSeason20072008 = db.Seasons.Single(s => s.Name == RegularSeason20072008);
@@ -136,8 +138,332 @@ namespace NHLStats.Data
                 var playoffs20162017 = db.Seasons.Single(s => s.Name == Playoffs20162017);
                 var cMcDavid = db.Players.Single(p => p.Name == "Connor McDavid");
                 var sCrosby = db.Players.Single(p => p.Name == "Sidney Crosby");
+                var aOvechkin = db.Players.Single(p => p.Name == "Alex Ovechkin");
                 var oilers = db.Teams.Single(t => t.Abbreviation == "EDM");
                 var penguins = db.Teams.Single(t => t.Abbreviation == "PIT");
+                var capitals = db.Teams.Single(t => t.Abbreviation == "WAS");
+                var dynamo = db.Teams.Single(t => t.Abbreviation == "Dynamo");
+
+
+
+                var aOvechkinSeasonStatRegularSeason20052006 = new SkaterStatistic
+                {
+                    SeasonId = regularSeason20052006.Id,
+                    LeagueId = nhl.Id,
+                    PlayerId = aOvechkin.Id,
+                    TeamId = capitals.Id,
+                    GamesPlayed = 81,
+                    Goals = 52,
+                    Assists = 54,
+                    Points = 106,
+                    PenaltyMinutes = 52,
+                    PlusMinus = 2
+                };
+
+               
+                var aOvechkinSeasonStatRegularSeason20062007 = new SkaterStatistic
+                {
+                    SeasonId = regularSeason20062007.Id,
+                    LeagueId = nhl.Id,
+                    PlayerId = aOvechkin.Id,
+                    TeamId = capitals.Id,
+                    GamesPlayed = 82,
+                    Goals = 46,
+                    Assists = 46,
+                    Points = 92,
+                    PenaltyMinutes = 52,
+                    PlusMinus = -19
+                };
+
+                var aOvechkinSeasonStatRegularSeason20072008 = new SkaterStatistic
+                {
+                    SeasonId = regularSeason20072008.Id,
+                    LeagueId = nhl.Id,
+                    PlayerId = aOvechkin.Id,
+                    TeamId = capitals.Id,
+                    GamesPlayed = 82,
+                    Goals = 65,
+                    Assists = 47,
+                    Points = 112,
+                    PenaltyMinutes = 40,
+                    PlusMinus = 28
+                };
+                var aOvechkinSeasonStatPlayoffs20072008 = new SkaterStatistic
+                {
+                    SeasonId = playoffs20072008.Id,
+                    LeagueId = nhl.Id,
+                    PlayerId = aOvechkin.Id,
+                    TeamId = capitals.Id,
+                    GamesPlayed = 7,
+                    Goals = 4,
+                    Assists = 5,
+                    Points = 9,
+                    PenaltyMinutes = 0
+                };
+
+                var aOvechkinSeasonStatRegularSeason20082009 = new SkaterStatistic
+                {
+                    SeasonId = regularSeason20082009.Id,
+                    LeagueId = nhl.Id,
+                    PlayerId = aOvechkin.Id,
+                    TeamId = capitals.Id,
+                    GamesPlayed = 79,
+                    Goals = 56,
+                    Assists = 54,
+                    Points = 110,
+                    PenaltyMinutes = 72,
+                    PlusMinus = 8
+                };
+
+                var aOvechkinSeasonStatPlayoffs20082009 = new SkaterStatistic
+                {
+                    SeasonId = playoffs20082009.Id,
+                    LeagueId = nhl.Id,
+                    PlayerId = aOvechkin.Id,
+                    TeamId = capitals.Id,
+                    GamesPlayed = 14,
+                    Goals = 11,
+                    Assists = 10,
+                    Points = 21,
+                    PenaltyMinutes = 8
+                };
+
+                var aOvechkinSeasonStatRegularSeason20092010 = new SkaterStatistic
+                {
+                    SeasonId = regularSeason20092010.Id,
+                    LeagueId = nhl.Id,
+                    PlayerId = aOvechkin.Id,
+                    TeamId = capitals.Id,
+                    GamesPlayed = 72,
+                    Goals = 50,
+                    Assists = 59,
+                    Points = 109,
+                    PenaltyMinutes = 89,
+                    PlusMinus = 45
+                };
+
+                var aOvechkinSeasonStatPlayoffs20092010 = new SkaterStatistic
+                {
+                    SeasonId = playoffs20092010.Id,
+                    LeagueId = nhl.Id,
+                    PlayerId = aOvechkin.Id,
+                    TeamId = capitals.Id,
+                    GamesPlayed = 7,
+                    Goals = 5,
+                    Assists = 5,
+                    Points = 10,
+                    PenaltyMinutes = 0
+                };
+
+                var aOvechkinSeasonStatRegularSeason20102011 = new SkaterStatistic
+                {
+                    SeasonId = regularSeason20102011.Id,
+                    LeagueId = nhl.Id,
+                    PlayerId = aOvechkin.Id,
+                    TeamId = capitals.Id,
+                    GamesPlayed = 79,
+                    Goals = 32,
+                    Assists = 53,
+                    Points = 85,
+                    PenaltyMinutes = 41,
+                    PlusMinus = 24
+                };
+
+                var aOvechkinSeasonStatPlayoffs20102011 = new SkaterStatistic
+                {
+                    SeasonId = playoffs20102011.Id,
+                    LeagueId = nhl.Id,
+                    PlayerId = aOvechkin.Id,
+                    TeamId = capitals.Id,
+                    GamesPlayed = 9,
+                    Goals = 5,
+                    Assists = 5,
+                    Points = 10,
+                    PenaltyMinutes = 10
+                };
+
+                var aOvechkinSeasonStatRegularSeason20112012 = new SkaterStatistic
+                {
+                    SeasonId = regularSeason20112012.Id,
+                    LeagueId = nhl.Id,
+                    PlayerId = aOvechkin.Id,
+                    TeamId = capitals.Id,
+                    GamesPlayed = 78,
+                    Goals = 38,
+                    Assists = 27,
+                    Points = 65,
+                    PenaltyMinutes = 26,
+                    PlusMinus = -8
+                };
+
+                var aOvechkinSeasonStatPlayoffs20112012 = new SkaterStatistic
+                {
+                    SeasonId = playoffs20112012.Id,
+                    LeagueId = nhl.Id,
+                    PlayerId = aOvechkin.Id,
+                    TeamId = capitals.Id,
+                    GamesPlayed = 14,
+                    Goals = 5,
+                    Assists = 4,
+                    Points = 9,
+                    PenaltyMinutes = 8
+                };
+
+                var aOvechkinSeasonStatRegularSeason20122013 = new SkaterStatistic
+                {
+                    SeasonId = regularSeason20122013.Id,
+                    LeagueId = khl.Id,
+                    PlayerId = aOvechkin.Id,
+                    TeamId = dynamo.Id,
+                    GamesPlayed = 31,
+                    Goals = 19,
+                    Assists = 21,
+                    Points = 40,
+                    PenaltyMinutes = 14,
+                    PlusMinus = 13
+                };
+
+                var aOvechkinSeasonStatRegularSeason20122013NHL = new SkaterStatistic
+                {
+                    SeasonId = regularSeason20122013.Id,
+                    LeagueId = nhl.Id,
+                    PlayerId = aOvechkin.Id,
+                    TeamId = capitals.Id,
+                    GamesPlayed = 48,
+                    Goals = 32,
+                    Assists = 24,
+                    Points = 56,
+                    PenaltyMinutes = 36,
+                    PlusMinus = 2
+                };
+
+                var aOvechkinSeasonStatPlayoffs20122013 = new SkaterStatistic
+                {
+                    SeasonId = playoffs20122013.Id,
+                    LeagueId = nhl.Id,
+                    PlayerId = aOvechkin.Id,
+                    TeamId = capitals.Id,
+                    GamesPlayed = 7,
+                    Goals = 1,
+                    Assists = 1,
+                    Points = 2,
+                    PenaltyMinutes = 4
+                };
+                
+                var aOvechkinSeasonStatRegularSeason20132014 = new SkaterStatistic
+                {
+                    SeasonId = regularSeason20132014.Id,
+                    LeagueId = nhl.Id,
+                    PlayerId = aOvechkin.Id,
+                    TeamId = capitals.Id,
+                    GamesPlayed = 78,
+                    Goals = 51,
+                    Assists = 28,
+                    Points = 79,
+                    PenaltyMinutes = 48,
+                    PlusMinus = -35
+                };
+
+             
+
+                var aOvechkinSeasonStatRegularSeason20142015 = new SkaterStatistic
+                {
+                    SeasonId = regularSeason20142015.Id,
+                    LeagueId = nhl.Id,
+                    PlayerId = aOvechkin.Id,
+                    TeamId = capitals.Id,
+                    GamesPlayed = 81,
+                    Goals = 53,
+                    Assists = 28,
+                    Points = 81,
+                    PenaltyMinutes = 58,
+                    PlusMinus = 10
+                };
+
+                var aOvechkinSeasonStatPlayoffs20142015 = new SkaterStatistic
+                {
+                    SeasonId = playoffs20142015.Id,
+                    LeagueId = nhl.Id,
+                    PlayerId = aOvechkin.Id,
+                    TeamId = capitals.Id,
+                    GamesPlayed = 14,
+                    Goals = 5,
+                    Assists = 4,
+                    Points = 9,
+                    PenaltyMinutes = 6
+                };
+
+
+                
+                var aOvechkinSeasonStatRegularSeason20152016 = new SkaterStatistic
+                {
+                    SeasonId = regularSeason20152016.Id,
+                    LeagueId = nhl.Id,
+                    PlayerId = aOvechkin.Id,
+                    TeamId = capitals.Id,
+                    GamesPlayed = 79,
+                    Goals = 50,
+                    Assists = 21,
+                    Points = 71,
+                    PenaltyMinutes = 53,
+                    PlusMinus = 21
+                };
+
+                var aOvechkinSeasonStatPlayoffs20152016 = new SkaterStatistic
+                {
+                    SeasonId = playoffs20152016.Id,
+                    LeagueId = nhl.Id,
+                    PlayerId = aOvechkin.Id,
+                    TeamId = capitals.Id,
+                    GamesPlayed = 12,
+                    Goals = 5,
+                    Assists = 7,
+                    Points = 12,
+                    PenaltyMinutes = 2
+                };
+
+                var aOvechkinSeasonStatRegularSeason20162017 = new SkaterStatistic
+                {
+                    SeasonId = regularSeason20162017.Id,
+                    LeagueId = nhl.Id,
+                    PlayerId = aOvechkin.Id,
+                    TeamId = capitals.Id,
+                    GamesPlayed = 82,
+                    Goals = 33,
+                    Assists = 36,
+                    Points = 69,
+                    PenaltyMinutes = 50,
+                    PlusMinus = 6
+                };
+
+                var aOvechkinSeasonStatPlayoffs20162017 = new SkaterStatistic
+                {
+                    SeasonId = playoffs20162017.Id,
+                    LeagueId = nhl.Id,
+                    PlayerId = aOvechkin.Id,
+                    TeamId = capitals.Id,
+                    GamesPlayed = 13,
+                    Goals = 5,
+                    Assists = 3,
+                    Points = 8,
+                    PenaltyMinutes = 8
+                };
+
+              
+                var aOvechkinSeasonStatRegularSeason20172018 = new SkaterStatistic
+                {
+                    SeasonId = regularSeason20172018.Id,
+                    LeagueId = nhl.Id,
+                    PlayerId = aOvechkin.Id,
+                    TeamId = capitals.Id,
+                    GamesPlayed = 69,
+                    Goals = 42,
+                    Assists = 32,
+                    Points = 74,
+                    PenaltyMinutes = 24,
+                    PlusMinus = 2
+                };
+
 
                 var sCrosbySeasonStatRegularSeason20052006 = new SkaterStatistic
                 {
@@ -506,7 +832,35 @@ namespace NHLStats.Data
                     PlusMinus = 16
                 };
 
-                //05-06 & 10/11
+                
+                db.SkaterStatistics.Add(aOvechkinSeasonStatRegularSeason20052006);
+                db.SkaterStatistics.Add(aOvechkinSeasonStatRegularSeason20062007);
+                db.SkaterStatistics.Add(aOvechkinSeasonStatRegularSeason20072008);
+                db.SkaterStatistics.Add(aOvechkinSeasonStatRegularSeason20082009);
+                db.SkaterStatistics.Add(aOvechkinSeasonStatRegularSeason20092010);
+                db.SkaterStatistics.Add(aOvechkinSeasonStatRegularSeason20102011);
+                db.SkaterStatistics.Add(aOvechkinSeasonStatRegularSeason20112012);
+                db.SkaterStatistics.Add(aOvechkinSeasonStatRegularSeason20122013);
+                db.SkaterStatistics.Add(aOvechkinSeasonStatRegularSeason20122013NHL);
+                db.SkaterStatistics.Add(aOvechkinSeasonStatRegularSeason20132014);
+                db.SkaterStatistics.Add(aOvechkinSeasonStatRegularSeason20142015);
+                db.SkaterStatistics.Add(aOvechkinSeasonStatRegularSeason20152016);
+                db.SkaterStatistics.Add(aOvechkinSeasonStatRegularSeason20162017);
+                db.SkaterStatistics.Add(aOvechkinSeasonStatRegularSeason20172018);
+
+                db.SkaterStatistics.Add(aOvechkinSeasonStatPlayoffs20072008);
+                db.SkaterStatistics.Add(aOvechkinSeasonStatPlayoffs20082009);
+                db.SkaterStatistics.Add(aOvechkinSeasonStatPlayoffs20092010);
+                db.SkaterStatistics.Add(aOvechkinSeasonStatPlayoffs20102011);
+                db.SkaterStatistics.Add(aOvechkinSeasonStatPlayoffs20112012);
+                db.SkaterStatistics.Add(aOvechkinSeasonStatPlayoffs20122013);
+                db.SkaterStatistics.Add(aOvechkinSeasonStatPlayoffs20142015);
+                db.SkaterStatistics.Add(aOvechkinSeasonStatPlayoffs20152016);
+                db.SkaterStatistics.Add(aOvechkinSeasonStatPlayoffs20162017);
+
+
+
+
                 db.SkaterStatistics.Add(sCrosbySeasonStatRegularSeason20052006);
                 db.SkaterStatistics.Add(sCrosbySeasonStatRegularSeason20062007);
                 db.SkaterStatistics.Add(sCrosbySeasonStatRegularSeason20072008);
