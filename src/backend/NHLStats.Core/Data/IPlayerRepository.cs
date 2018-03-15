@@ -9,5 +9,6 @@ namespace NHLStats.Core.Data
     {
         Task<Player> Get(int id);
         Task<List<Player>> All();
+        Task<Player> Add(Player player);
     }
 }

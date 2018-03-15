@@ -9,7 +9,7 @@ namespace NHLStats.Api.Models
         public NHLStatsSchema(IDependencyResolver resolver): base(resolver)
         {
             Query = resolver.Resolve<NHLStatsQuery>();
-            //Mutation = resolver.Resolve<StarWarsMutation>();
+            Mutation = resolver.Resolve<NHLStatsMutation>();
         }
     }
 }

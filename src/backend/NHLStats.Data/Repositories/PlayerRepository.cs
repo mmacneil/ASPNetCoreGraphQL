@@ -26,5 +26,12 @@ namespace NHLStats.Data.Repositories
         {
             return await _db.Players.ToListAsync();
         }
+
+        public async Task<Player> Add(Player player)
+        {
+            await _db.Players.AddAsync(player);
+            await _db.SaveChangesAsync();
+            return player;
+        }
     }
 }

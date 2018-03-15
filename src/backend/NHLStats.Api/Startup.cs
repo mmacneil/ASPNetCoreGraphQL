@@ -31,10 +31,12 @@ namespace NHLStats.Api
             services.AddDbContext<NHLStatsContext>(options => options.UseSqlServer(Configuration["ConnectionStrings:NHLStatsDb"]));
             services.AddTransient<IPlayerRepository, PlayerRepository>();
             services.AddTransient<ISkaterStatisticRepository, SkaterStatisticRepository>();
-            services.AddScoped<IDocumentExecuter, DocumentExecuter>();
-            services.AddTransient<NHLStatsQuery>();
-            services.AddTransient<PlayerType>();
-            services.AddTransient<SkaterStatisticType>();
+            services.AddSingleton<IDocumentExecuter, DocumentExecuter>();
+            services.AddSingleton<NHLStatsQuery>();
+            services.AddSingleton<NHLStatsMutation>();
+            services.AddSingleton<PlayerType>();
+            services.AddSingleton<PlayerInputType>();
+            services.AddSingleton<SkaterStatisticType>();
             var sp = services.BuildServiceProvider();
             services.AddSingleton<ISchema>(new NHLStatsSchema(new FuncDependencyResolver(type => sp.GetService(type))));
         }

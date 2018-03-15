@@ -22,5 +22,10 @@ namespace NHLStats.Data.InMemory
         {
             throw new System.NotImplementedException();
         }
+
+        public Task<Player> Add(Player player)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }
