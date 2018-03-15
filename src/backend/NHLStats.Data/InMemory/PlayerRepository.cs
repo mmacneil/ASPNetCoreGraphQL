@@ -17,5 +17,10 @@ namespace NHLStats.Data.InMemory
         {
             return Task.FromResult(_players.FirstOrDefault(p => p.Id == id));
         }
+
+        public Task<List<Player>> All()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

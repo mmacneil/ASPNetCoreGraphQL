@@ -13,6 +13,13 @@ namespace NHLStats.Api.Models
                 "player",
                 arguments: new QueryArguments(new QueryArgument<IntGraphType> { Name = "id" }),
                 resolve: context => playerRepository.Get(context.GetArgument<int>("id")));
+
+            Field<ListGraphType<PlayerType>>(
+                "players",
+                resolve: context => playerRepository.All());
         }
     }
 }
+
+
+ 

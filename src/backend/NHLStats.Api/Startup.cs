@@ -47,6 +47,7 @@ namespace NHLStats.Api
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseGraphiQl();
             app.UseMvc();
             db.EnsureSeedData();
         }
