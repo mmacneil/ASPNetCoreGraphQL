@@ -12,7 +12,7 @@ using NHLStats.Data;
 namespace NHLStats.Data.Migrations
 {
     [DbContext(typeof(NHLStatsContext))]
-    [Migration("20180331171235_initial")]
+    [Migration("20180331173608_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

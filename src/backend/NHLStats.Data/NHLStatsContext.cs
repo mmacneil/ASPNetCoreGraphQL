@@ -9,7 +9,8 @@ namespace NHLStats.Data
         public NHLStatsContext(DbContextOptions options)
             : base(options)
         {
-            Database.EnsureCreated();
+           // Database.EnsureCreated();
+           Database.Migrate();
         }
 
         public DbSet<Player> Players { get; set; }
