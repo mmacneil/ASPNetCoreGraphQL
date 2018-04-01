@@ -43,8 +43,13 @@ namespace NHLStats.Data
                 {
                    new Player { Name = "Sidney Crosby",  BirthDate = new DateTime(1987,8,7), Height = "5'11",WeightLbs = 200, BirthPlace = "Cole Harbour, NS"},
                    new Player { Name = "Connor McDavid", BirthDate = new DateTime(1997,1,13), Height = "6'01",WeightLbs = 192, BirthPlace = "Richmond Hill, ONT"},
-                   new Player { Name = "Alex Ovechkin",  BirthDate = new DateTime(1985,1,13), Height = "6'03",WeightLbs = 235, BirthPlace = "Moscow, Russia"}
-                };
+                   new Player { Name = "Alex Ovechkin",  BirthDate = new DateTime(1985,1,13), Height = "6'03",WeightLbs = 235, BirthPlace = "Moscow, Russia"},
+                   new Player { Name = "Nico Hischier",  BirthDate = new DateTime(1999,1,4), Height = "6'01",WeightLbs = 175, BirthPlace = "Brig, Switzerland"},
+                   new Player { Name = "Patrik Laine",  BirthDate = new DateTime(1998,4,19), Height = "6'04",WeightLbs = 206, BirthPlace = "Tampere, Finland"},
+                   new Player { Name = "Auston Matthews",  BirthDate = new DateTime(1997,9,17), Height = "6'03",WeightLbs = 216, BirthPlace = "San Ramon, CA"},
+                   new Player { Name = "Brock Boeser",  BirthDate = new DateTime(1997,2,27), Height = "6'01",WeightLbs = 191, BirthPlace = "Burnsville, MN"},
+                   new Player { Name = "Nathan MacKinnon",  BirthDate = new DateTime(1995,9,1), Height = "6'00",WeightLbs = 205, BirthPlace = "Halifax, NS"}
+                };  
                 db.Players.AddRange(players);
                 db.SaveChanges();
             }
@@ -91,7 +96,12 @@ namespace NHLStats.Data
                     new Team {Name = "Edmonton Oilers", Abbreviation = "EDM"},
                     new Team {Name = "Washington Capitals", Abbreviation = "WAS"},
                     new Team {Name = "Pittsburgh Penguins", Abbreviation = "PIT"},
-                    new Team {Name = "Moscow Dynamo", Abbreviation = "Dynamo"}
+                    new Team {Name = "Moscow Dynamo", Abbreviation = "Dynamo"},
+                    new Team {Name = "New Jersey Devils", Abbreviation = "NJD"},
+                    new Team {Name = "Winnipeg Jets", Abbreviation = "WPG"},
+                    new Team {Name = "Toronto Maple Leafs", Abbreviation = "TOR"},
+                    new Team {Name = "Vancouver Canucks", Abbreviation = "VAN"},
+                    new Team {Name = "Colorado Avalanche", Abbreviation = "COL"}
                 };
                 db.Teams.AddRange(teams);
                 db.SaveChanges();
@@ -102,7 +112,7 @@ namespace NHLStats.Data
                 var leagues = new List<League>
                 {
                     new League { Name = "National Hockey League", Abbreviation = "NHL" },
-                    new League { Name = "Kontinental Hockey League", Abbreviation = "KHL" },
+                    new League { Name = "Kontinental Hockey League", Abbreviation = "KHL" }
                 };
                 db.Leagues.AddRange(leagues);
                 db.SaveChanges();
@@ -110,8 +120,10 @@ namespace NHLStats.Data
 
             if (!db.SkaterStatistics.Any())
             {
+                // leagues
                 var nhl = db.Leagues.Single(l => l.Abbreviation == "NHL");
                 var khl = db.Leagues.Single(l => l.Abbreviation == "KHL");
+                // regular seasons
                 var regularSeason20052006 = db.Seasons.Single(s => s.Name == RegularSeason20052006);
                 var regularSeason20062007 = db.Seasons.Single(s => s.Name == RegularSeason20062007);
                 var regularSeason20072008 = db.Seasons.Single(s => s.Name == RegularSeason20072008);
@@ -125,6 +137,7 @@ namespace NHLStats.Data
                 var regularSeason20152016 = db.Seasons.Single(s => s.Name == RegularSeason20152016);
                 var regularSeason20162017 = db.Seasons.Single(s => s.Name == RegularSeason20162017);
                 var regularSeason20172018 = db.Seasons.Single(s => s.Name == RegularSeason20172018);
+                // playoffs
                 var playoffs20062007 = db.Seasons.Single(s => s.Name == Playoffs20062007);
                 var playoffs20072008 = db.Seasons.Single(s => s.Name == Playoffs20072008);
                 var playoffs20082009 = db.Seasons.Single(s => s.Name == Playoffs20082009);
@@ -136,12 +149,26 @@ namespace NHLStats.Data
                 var playoffs20142015 = db.Seasons.Single(s => s.Name == Playoffs20142015);
                 var playoffs20152016 = db.Seasons.Single(s => s.Name == Playoffs20142015);
                 var playoffs20162017 = db.Seasons.Single(s => s.Name == Playoffs20162017);
+
+                // players
                 var cMcDavid = db.Players.Single(p => p.Name == "Connor McDavid");
                 var sCrosby = db.Players.Single(p => p.Name == "Sidney Crosby");
                 var aOvechkin = db.Players.Single(p => p.Name == "Alex Ovechkin");
+                var nHischier = db.Players.Single(p => p.Name == "Nico Hischier");
+                var pLaine = db.Players.Single(p => p.Name == "Patrik Laine");
+                var aMatthews = db.Players.Single(p => p.Name == "Auston Matthews");
+                var bBoeser = db.Players.Single(p => p.Name == "Brock Boeser");
+                var nMackinnon = db.Players.Single(p => p.Name == "Nathan MacKinnon");
+
+                // teams
                 var oilers = db.Teams.Single(t => t.Abbreviation == "EDM");
                 var penguins = db.Teams.Single(t => t.Abbreviation == "PIT");
                 var capitals = db.Teams.Single(t => t.Abbreviation == "WAS");
+                var devils = db.Teams.Single(t => t.Abbreviation == "NJD");
+                var jets = db.Teams.Single(t => t.Abbreviation == "WPG");
+                var leafs = db.Teams.Single(t => t.Abbreviation == "TOR");
+                var canucks = db.Teams.Single(t => t.Abbreviation == "VAN");
+                var avalanche = db.Teams.Single(t => t.Abbreviation == "COL");
                 var dynamo = db.Teams.Single(t => t.Abbreviation == "Dynamo");
 
 
@@ -832,7 +859,190 @@ namespace NHLStats.Data
                     PlusMinus = 16
                 };
 
-                
+                var nHischierSeasonStatRegularSeason20172018 = new SkaterStatistic
+                {
+                    SeasonId = regularSeason20172018.Id,
+                    LeagueId = nhl.Id,
+                    PlayerId = nHischier.Id,
+                    TeamId = devils.Id,
+                    GamesPlayed = 77,
+                    Goals = 18,
+                    Assists = 32,
+                    Points = 50,
+                    PenaltyMinutes = 20,
+                    PlusMinus = 9
+                };
+
+                var pLaineSeasonStatRegularSeason20162017 = new SkaterStatistic
+                {
+                    SeasonId = regularSeason20162017.Id,
+                    LeagueId = nhl.Id,
+                    PlayerId = pLaine.Id,
+                    TeamId = jets.Id,
+                    GamesPlayed = 73,
+                    Goals = 36,
+                    Assists = 28,
+                    Points = 64,
+                    PenaltyMinutes = 26,
+                    PlusMinus = 7
+                };
+
+                var pLaineSeasonStatRegularSeason20172018 = new SkaterStatistic
+                {
+                    SeasonId = regularSeason20172018.Id,
+                    LeagueId = nhl.Id,
+                    PlayerId = pLaine.Id,
+                    TeamId = jets.Id,
+                    GamesPlayed = 77,
+                    Goals = 43,
+                    Assists = 25,
+                    Points = 68,
+                    PenaltyMinutes = 24,
+                    PlusMinus = 8
+                };
+
+                var aMatthewsSeasonStatRegularSeason20162017 = new SkaterStatistic
+                {
+                    SeasonId = regularSeason20162017.Id,
+                    LeagueId = nhl.Id,
+                    PlayerId = aMatthews.Id,
+                    TeamId = leafs.Id,
+                    GamesPlayed = 82,
+                    Goals = 40,
+                    Assists = 29,
+                    Points = 69,
+                    PenaltyMinutes = 14,
+                    PlusMinus = 2
+                };
+
+                var aMatthewsSeasonStatRegularSeason20172018 = new SkaterStatistic
+                {
+                    SeasonId = regularSeason20172018.Id,
+                    LeagueId = nhl.Id,
+                    PlayerId = aMatthews.Id,
+                    TeamId = leafs.Id,
+                    GamesPlayed = 58,
+                    Goals = 31,
+                    Assists = 25,
+                    Points = 56,
+                    PenaltyMinutes = 10,
+                    PlusMinus = 23
+                };
+
+                var bBoeserSeasonStatRegularSeason20162017 = new SkaterStatistic
+                {
+                    SeasonId = regularSeason20162017.Id,
+                    LeagueId = nhl.Id,
+                    PlayerId = bBoeser.Id,
+                    TeamId = canucks.Id,
+                    GamesPlayed = 9,
+                    Goals = 4,
+                    Assists = 1,
+                    Points = 5,
+                    PenaltyMinutes = 0,
+                    PlusMinus = 0
+                };
+
+                var bBoeserSeasonStatRegularSeason20172018 = new SkaterStatistic
+                {
+                    SeasonId = regularSeason20172018.Id,
+                    LeagueId = nhl.Id,
+                    PlayerId = bBoeser.Id,
+                    TeamId = canucks.Id,
+                    GamesPlayed = 62,
+                    Goals = 29,
+                    Assists = 26,
+                    Points = 55,
+                    PenaltyMinutes = 16,
+                    PlusMinus = -5
+                };
+
+
+
+                var nMackinnonSeasonStatRegularSeason20132014 = new SkaterStatistic
+                {
+                    SeasonId = regularSeason20132014.Id,
+                    LeagueId = nhl.Id,
+                    PlayerId = nMackinnon.Id,
+                    TeamId = avalanche.Id,
+                    GamesPlayed = 82,
+                    Goals = 24,
+                    Assists = 39,
+                    Points = 63,
+                    PenaltyMinutes = 26,
+                    PlusMinus = 20
+                };
+                var nMackinnonSeasonStatPlayoffs20132014 = new SkaterStatistic
+                {
+                    SeasonId = playoffs20132014.Id,
+                    LeagueId = nhl.Id,
+                    PlayerId = nMackinnon.Id,
+                    TeamId = avalanche.Id,
+                    GamesPlayed = 7,
+                    Goals = 2,
+                    Assists = 8,
+                    Points = 10,
+                    PenaltyMinutes = 4
+                };
+
+                var nMackinnonSeasonStatRegularSeason20142015 = new SkaterStatistic
+                {
+                    SeasonId = regularSeason20142015.Id,
+                    LeagueId = nhl.Id,
+                    PlayerId = nMackinnon.Id,
+                    TeamId = avalanche.Id,
+                    GamesPlayed = 64,
+                    Goals = 14,
+                    Assists = 24,
+                    Points = 38,
+                    PenaltyMinutes = 34,
+                    PlusMinus = -7
+                };
+
+                var nMackinnonSeasonStatRegularSeason20152016 = new SkaterStatistic
+                {
+                    SeasonId = regularSeason20142015.Id,
+                    LeagueId = nhl.Id,
+                    PlayerId = nMackinnon.Id,
+                    TeamId = avalanche.Id,
+                    GamesPlayed = 72,
+                    Goals = 21,
+                    Assists = 31,
+                    Points = 52,
+                    PenaltyMinutes = 20,
+                    PlusMinus = -4
+                };
+
+                var nMackinnonSeasonStatRegularSeason20162017 = new SkaterStatistic
+                {
+                    SeasonId = regularSeason20142015.Id,
+                    LeagueId = nhl.Id,
+                    PlayerId = nMackinnon.Id,
+                    TeamId = avalanche.Id,
+                    GamesPlayed = 82,
+                    Goals = 16,
+                    Assists = 37,
+                    Points = 53,
+                    PenaltyMinutes = 16,
+                    PlusMinus = -14
+                };
+
+                var nMackinnonSeasonStatRegularSeason20172018 = new SkaterStatistic
+                {
+                    SeasonId = regularSeason20142015.Id,
+                    LeagueId = nhl.Id,
+                    PlayerId = nMackinnon.Id,
+                    TeamId = avalanche.Id,
+                    GamesPlayed = 70,
+                    Goals = 38,
+                    Assists = 55,
+                    Points = 93,
+                    PenaltyMinutes = 53,
+                    PlusMinus = 14
+                };
+
+
+
                 db.SkaterStatistics.Add(aOvechkinSeasonStatRegularSeason20052006);
                 db.SkaterStatistics.Add(aOvechkinSeasonStatRegularSeason20062007);
                 db.SkaterStatistics.Add(aOvechkinSeasonStatRegularSeason20072008);
@@ -891,6 +1101,26 @@ namespace NHLStats.Data
                 db.SkaterStatistics.Add(cMcDavidSeasonStatRegularSeason20162017);
                 db.SkaterStatistics.Add(cMcDavidSeasonStatPlayoffs20162017);
                 db.SkaterStatistics.Add(cMcDavidSeasonStatRegularSeason20172018);
+
+                db.SkaterStatistics.Add(nHischierSeasonStatRegularSeason20172018);
+
+                db.SkaterStatistics.Add(pLaineSeasonStatRegularSeason20162017);
+                db.SkaterStatistics.Add(pLaineSeasonStatRegularSeason20172018);
+
+                db.SkaterStatistics.Add(aMatthewsSeasonStatRegularSeason20162017);
+                db.SkaterStatistics.Add(aMatthewsSeasonStatRegularSeason20172018);
+
+                db.SkaterStatistics.Add(bBoeserSeasonStatRegularSeason20162017);
+                db.SkaterStatistics.Add(bBoeserSeasonStatRegularSeason20172018);
+
+
+                db.SkaterStatistics.Add(nMackinnonSeasonStatRegularSeason20132014);
+                db.SkaterStatistics.Add(nMackinnonSeasonStatPlayoffs20132014);
+                db.SkaterStatistics.Add(nMackinnonSeasonStatRegularSeason20142015);
+                db.SkaterStatistics.Add(nMackinnonSeasonStatRegularSeason20152016);
+                db.SkaterStatistics.Add(nMackinnonSeasonStatRegularSeason20162017);
+                db.SkaterStatistics.Add(nMackinnonSeasonStatRegularSeason20172018);
+
                 db.SaveChanges();
             }
         }
