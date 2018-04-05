@@ -12,7 +12,11 @@ namespace NHLStats.Api.Models
             Field<PlayerType>(
                 "player",
                 arguments: new QueryArguments(new QueryArgument<IntGraphType> { Name = "id" }),
-                resolve: context => playerRepository.Get(context.GetArgument<int>("id")));
+                resolve: context =>  playerRepository.Get(context.GetArgument<int>("id")));
+
+            Field<PlayerType>(
+                "randomPlayer",
+                resolve: context => playerRepository.GetRandom());
 
             Field<ListGraphType<PlayerType>>(
                 "players",

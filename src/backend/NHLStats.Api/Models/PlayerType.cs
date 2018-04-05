@@ -16,7 +16,8 @@ namespace NHLStats.Api.Models
             Field(x => x.WeightLbs);
             Field<StringGraphType>("birthDate", resolve: context => context.Source.BirthDate.ToShortDateString());
             Field<ListGraphType<SkaterStatisticType>>("skaterSeasonStats",
-                resolve: context => skaterStatisticRepository.Get(context.Source.Id));
+                arguments: new QueryArguments(new QueryArgument<IntGraphType> { Name = "id" }),
+                resolve: context => skaterStatisticRepository.Get(context.Source.Id), description: "Player's skater stats");
         }
     }
 }
