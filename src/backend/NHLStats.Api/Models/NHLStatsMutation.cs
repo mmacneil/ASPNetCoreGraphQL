@@ -10,7 +10,7 @@ namespace NHLStats.Api.Models
     {
         public NHLStatsMutation(IPlayerRepository playerRepository)
         {
-            Name = "Mutation";
+            Name = "CreatePlayerMutation";
 
             Field<PlayerType>(
                 "createPlayer",
