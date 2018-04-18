@@ -16,3 +16,5 @@ The project is configured to create and <a href="https://github.com/mmacneil/ASP
 After running the project, verify the database was created in your local Sql Server LocalDB instance.
 
 <img src="https://fullstackmark.com/img/posts/17/graphql-nhlstats-demo-sql-server-database.png" />
+
+Alternatively, you can also apply the existing <a href="https://github.com/mmacneil/ASPNetCoreGraphQL/tree/master/src/backend/NHLStats.Data/Migrations">migrations</a> to create the database by running <code>dotnet ef database update</code> from the \NHLStats.Data folder. The seed data will be inserted on first run of the application.
