@@ -5,7 +5,7 @@ Sample project based on <a href="https://fullstackmark.com/post/17/building-a-gr
 
 
 ## Development Environment
--  .NET Core 2.0 SDK
+-  .NET Core 2.2 SDK
 - Visual Studio Code v1.21.1 (Should also work in VS2017)
 - Sql Server Management Studio 2017
  
