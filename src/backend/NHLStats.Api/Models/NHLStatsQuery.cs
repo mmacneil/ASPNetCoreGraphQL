@@ -1,5 +1,6 @@
 ﻿
 using GraphQL.Types;
+using NHLStats.Api.Helpers;
 using NHLStats.Core.Data;
 
 
@@ -7,20 +8,20 @@ namespace NHLStats.Api.Models
 {
     public class NHLStatsQuery : ObjectGraphType
     {
-        public NHLStatsQuery(IPlayerRepository playerRepository)
+        public NHLStatsQuery(ContextServiceLocator contextServiceLocator)
         {
             Field<PlayerType>(
                 "player",
                 arguments: new QueryArguments(new QueryArgument<IntGraphType> { Name = "id" }),
-                resolve: context =>  playerRepository.Get(context.GetArgument<int>("id")));
+                resolve: context => contextServiceLocator.PlayerRepository.Get(context.GetArgument<int>("id")));
 
             Field<PlayerType>(
                 "randomPlayer",
-                resolve: context => playerRepository.GetRandom());
+                resolve: context => contextServiceLocator.PlayerRepository.GetRandom());
 
             Field<ListGraphType<PlayerType>>(
                 "players",
-                resolve: context => playerRepository.All());
+                resolve: context => contextServiceLocator.PlayerRepository.All());
         }
     }
 }

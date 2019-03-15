@@ -1,6 +1,7 @@
 ﻿ 
 
 using GraphQL.Types;
+using NHLStats.Api.Helpers;
 using NHLStats.Core.Data;
 using NHLStats.Core.Models;
 
@@ -8,7 +9,7 @@ namespace NHLStats.Api.Models
 {
     public class NHLStatsMutation : ObjectGraphType
     {
-        public NHLStatsMutation(IPlayerRepository playerRepository)
+        public NHLStatsMutation(ContextServiceLocator contextServiceLocator)
         {
             Name = "CreatePlayerMutation";
 
@@ -20,7 +21,7 @@ namespace NHLStats.Api.Models
                 resolve: context =>
                 {
                     var player = context.GetArgument<Player>("player");
-                    return playerRepository.Add(player);
+                    return contextServiceLocator.PlayerRepository.Add(player);
                 });
         }
     }
