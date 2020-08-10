@@ -3,11 +3,6 @@ Sample project based on <a href="https://fullstackmark.com/post/17/building-a-gr
 
 <img src="https://fullstackmark.com/img/posts/17/interactive-graphql-queries.gif" />
 
-ASPNetCoreGraphQL is being sponsored by the following tool; please help to support us by taking a look and signing up to a free trial.
-
-<a href="https://tracking.gitads.io/?repo=ASPNetCoreGraphQL">
- <img src="https://images.gitads.io/ASPNetCoreGraphQL" alt="GitAds"/></a>
- 
 ## Development Environment
 -  .NET Core 2.2 SDK
 - Visual Studio Code v1.21.1 (Should also work in VS2017)
